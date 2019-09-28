@@ -29,3 +29,4 @@ make
 ## プロジェクトの起動  
 cd ~/choreonoid/build  
 bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDA-RTM.py  
+##(逐次更新予定)
