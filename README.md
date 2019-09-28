@@ -19,7 +19,7 @@
 
 
 
-
+### コマンド
 cd ~/chorenoid/ext  
 git clone https://github.com/Ipl-Abe/Rel_UoA_WRS.git  
 cd ~/choreonoid/build  
