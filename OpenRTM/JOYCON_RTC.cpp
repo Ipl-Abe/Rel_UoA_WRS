@@ -9,15 +9,22 @@
 #include "JOYCON_RTC.h"
 #include <iostream>
 #include <vector>
+#include <iomanip>
+#include <cstdio>
 #include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/joystick.h>
 #include <rtm/idl/BasicDataTypeSkel.h>
 #include <rtm/DataFlowComponentBase.h>
 #include <rtm/DataOutPort.h>
 
 
+
 #define JOYCON_L "/dev/input/js1"
 #define JOYCON_R "/dev/input/js2"
 
+using namespace RTC;
 using namespace std;
 
 JOYCON_RTC::JOYCON_RTC(RTC::Manager* manager) 
