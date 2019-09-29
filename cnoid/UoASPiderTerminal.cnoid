@@ -12,10 +12,10 @@ items:
       data: 
         filename: "${PROJECT_DIR}/AizuSpider-RTSystem.xml"
         format: RTS-PROFILE-XML
-        AutoConnection: true
-        PollingCycle: 1000
-        StateCheck: Polling
-        CheckAtLoading: true
+        autoConnection: true
+        pollingCycle: 1000
+        stateCheckMode: Polling
+        checkAtLoading: true
     - 
       id: 2
       name: "JoystickRTC"
@@ -33,7 +33,7 @@ items:
       plugin: OpenRTM
       class: RTCItem
       data: 
-        module: "${PROGRAM_TOP}/lib/choreonoid-1.7/rtc/JOYCON_RTC.so"
+        module: "${PROGRAM_TOP}/lib/choreonoid-1.8/rtc/JOYCON_RTC.so"
         baseDirectory: "RTC directory"
         periodicType: PeriodicExecutionContext
         periodicRate: 1000
@@ -66,6 +66,9 @@ views:
       viewpointControlMode: thirdPerson
       collisionLines: false
       polygonMode: fill
+      restrictCameraRoll: true
+      verticalAxis: Z
+      lightingMode: full
       cullingMode: enabled
       defaultHeadLight: true
       defaultHeadLightIntensity: 0.6
@@ -91,11 +94,9 @@ views:
       pointSize: 1
       normalVisualization: false
       normalLength: 0.01
+      lightweightViewChange: false
       coordinateAxes: true
       fpsTestIteration: 1
-      showFPS: false
-      enableNewDisplayListDoubleRendering: false
-      useBufferForPicking: true
       upsideDown: false
       cameras: 
         - 
@@ -132,16 +133,16 @@ views:
   - 
     id: 6
     plugin: Body
-    class: JointSliderView
+    class: JointDisplacementView
     mounted: true
     state: 
-      showAllJoints: true
-      jointId: true
-      name: true
-      numColumns: 1
-      spinBox: true
-      slider: true
-      labelOnLeft: true
+      showSelectedJoints: false
+      showJointIDs: true
+      showJointNames: true
+      overlapJointNames: false
+      showSliders: true
+      showDials: false
+      showPhases: false
   - 
     id: 7
     plugin: Body
@@ -189,6 +190,7 @@ views:
     state: 
       NameServers: 
         - 
+          isDefaultNameServer: false
           host: "localhost"
           port: 2809
   - 
@@ -277,12 +279,12 @@ viewAreas:
     contents: 
       type: splitter
       orientation: horizontal
-      sizes: [ 265, 1132 ]
+      sizes: [ 260, 1109 ]
       children: 
         - 
           type: splitter
           orientation: vertical
-          sizes: [ 494, 493 ]
+          sizes: [ 407, 406 ]
           children: 
             - 
               type: pane
@@ -295,17 +297,17 @@ viewAreas:
         - 
           type: splitter
           orientation: vertical
-          sizes: [ 706, 281 ]
+          sizes: [ 582, 231 ]
           children: 
             - 
               type: splitter
               orientation: horizontal
-              sizes: [ 753, 373 ]
+              sizes: [ 738, 365 ]
               children: 
                 - 
                   type: splitter
                   orientation: horizontal
-                  sizes: [ 374, 373 ]
+                  sizes: [ 366, 366 ]
                   children: 
                     - 
                       type: pane
@@ -314,7 +316,7 @@ viewAreas:
                     - 
                       type: splitter
                       orientation: vertical
-                      sizes: [ 351, 349 ]
+                      sizes: [ 289, 287 ]
                       children: 
                         - 
                           type: pane
@@ -327,7 +329,7 @@ viewAreas:
                 - 
                   type: splitter
                   orientation: vertical
-                  sizes: [ 350, 350 ]
+                  sizes: [ 288, 288 ]
                   children: 
                     - 
                       type: pane
