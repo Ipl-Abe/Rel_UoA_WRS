@@ -4,14 +4,23 @@ include_directories(${CMAKE_SOURCE_DIR}/sample/WRS2018/script)
 
 #set(REL_UOA_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+configure_file(AizuSpiderDS.cnoid AizuSpiderDS.cnoid COPYONLY)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/AizuSpiderDS.cnoid
+        DESTINATION ${CMAKE_SOURCE_DIR}/sample/WRS2018/project)
+
 configure_file(AizuSpiderDA.cnoid AizuSpiderDA.cnoid COPYONLY)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/AizuSpiderDA.cnoid
         DESTINATION ${CMAKE_SOURCE_DIR}/sample/WRS2018/project)
 
-
 configure_file(UoASPiderTerminal.cnoid UoASPiderTerminal.cnoid COPYONLY)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/UoASPiderTerminal.cnoid
         DESTINATION ${CMAKE_SOURCE_DIR}/sample/OpenRTM)
+
+
+
+configure_file(T2-AizuSpiderDS-RTM.py T2-AizuSpiderDS-RTM.py COPYONLY)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/T2-AizuSpiderDS-RTM.py
+        DESTINATION ${CMAKE_SOURCE_DIR}/sample/WRS2018/script)
 
 
 configure_file(T2-AizuSpiderDA-RTM.py T2-AizuSpiderDA-RTM.py COPYONLY)
