@@ -19,5 +19,6 @@ add_cnoid_body_io_rtc(JacoIoRTC JacoIoRTC.cpp)
 
 add_cnoid_body_io_rtc(JOYCON_RTC JOYCON_RTC.cpp)
 add_cnoid_body_io_rtc(Jaco2ControllerRTC Jaco2ControllerRTC.cpp)
+add_cnoid_body_io_rtc(Jaco2AISTControllerRTC Jaco2AISTControllerRTC.cpp)
 #target_include_directories(Jaco2ControllerRTC "PROJECT_SOURCE_DIR")
 

@@ -60,6 +60,19 @@ items:
             baseDirectory: "RTC directory"
             instanceName: ""
             periodicRate: 0
+        - 
+          id: 4
+          name: "ControllerRTC"
+          plugin: OpenRTM
+          class: ControllerRTCItem
+          data: 
+            isNoDelayMode: false
+            controllerOptions: ""
+            module: "Jaco2AISTControllerRTC.so"
+            baseDirectory: "RTC directory"
+            instanceName: ""
+            executionContext: "SimulationExecutionContext"
+            periodicRate: 0
 views: 
   - 
     id: 0
@@ -72,6 +85,7 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
+      selected: [ 4 ]
       checked: [ 1 ]
       expanded: [ 1, 3 ]
   - 
