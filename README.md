@@ -28,9 +28,8 @@
     make   
     
 ## プロジェクトの起動(for AIST)
-* シミュレーションPC側  
-    
-    cd ~/choreonoid/build   
+* シミュレーションPC側
+    cd ~/choreonoid/build
     bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDS-RTM.py  
     または  
     CNOID_USE_GLSL=0 bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDS-RTM.py  
