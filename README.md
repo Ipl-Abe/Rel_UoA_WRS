@@ -34,8 +34,8 @@
     または  
     CNOID_USE_GLSL=0 bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDS-RTM.py  
 　　
-    * 操作用PC側  
-    cd ~/choreonoid/build   
+    * 操作用PC側
+    cd ~/choreonoid/build  
     bin/choreonoid ../sample/OpenRTM/UoASPiderTerminal.cnoid  
     または  
     CNOID_USE_GLSL=0 bin/choreonoid ../sample/OpenRTM/UoASPiderTerminal.cnoid  
