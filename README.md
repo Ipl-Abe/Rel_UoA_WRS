@@ -43,13 +43,13 @@
 ## プロジェクトの起動(for AGX)
 * シミュレーションPC側
     cd ~/choreonoid/build   
-    bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDA-RTM.py 
-    または
-    CNOID_USE_GLSL=0 bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDA-RTM.py
+    bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDA-RTM.py  
+    または  
+    CNOID_USE_GLSL=0 bin/choreonoid ../sample/WRS/script/T2-AizuSpiderDA-RTM.py  
     
 * 操作用PC側
-    cd ~/choreonoid/build   
-    bin/choreonoid ../sample/OpenRTM/UoASPiderTerminal.cnoid 
-    または
-    CNOID_USE_GLSL=0 bin/choreonoid ../sample/OpenRTM/UoASPiderTerminal.cnoid
+    cd ~/choreonoid/build  
+    bin/choreonoid ../sample/OpenRTM/UoASPiderTerminal.cnoid  
+    または  
+    CNOID_USE_GLSL=0 bin/choreonoid ../sample/OpenRTM/UoASPiderTerminal.cnoid  
 ##(逐次更新予定)
