@@ -193,11 +193,9 @@ RTC::ReturnCode_t Jaco2ControllerRTC::onExecute(RTC::UniqueId ec_id)
 
     // time step
     dt = 0.005;
-    cout << " debug 2" << endl;
     m_torque_LOut.write();
     m_torque_ROut.write();
 
-    cout << "debug 3" << endl;
     if(m_angle_LIn.isNew()){
         m_angle_LIn.read();  
     }
@@ -205,7 +203,7 @@ RTC::ReturnCode_t Jaco2ControllerRTC::onExecute(RTC::UniqueId ec_id)
     if(m_angle_RIn.isNew()){
         m_angle_RIn.read();
     }
-    cout << "debug 4" << endl;
+
     //controlModeflg = updateControlflg();
     if(controlModeflg == 0){
        updateTargetJointAnglesBYInverseKinematicks();
@@ -213,8 +211,7 @@ RTC::ReturnCode_t Jaco2ControllerRTC::onExecute(RTC::UniqueId ec_id)
     else {
         sequence();
     }
-    
-    cout << "in Execute 2 " << endl;
+
     for(int i=0; i < 9; ++i){
         double q = m_angle_L.data[i];
        // std::cout << " qref_L : "<< rad2deg(qref_L[i]) << " q : " << rad2deg(q) << endl;        
@@ -223,7 +220,6 @@ RTC::ReturnCode_t Jaco2ControllerRTC::onExecute(RTC::UniqueId ec_id)
         m_torque_L.data[i] = gain * VEL_GAIN / dt;
         qold_L[i] = q;
     }
-        cout << "in Execute 3 " << endl;
     for(int i=0; i < 9; ++i){
         double q = m_angle_R.data[i];
         // std::cout << " qref_R : "<<  qref_R[i] << " rad : " << q << endl;
@@ -233,10 +229,8 @@ RTC::ReturnCode_t Jaco2ControllerRTC::onExecute(RTC::UniqueId ec_id)
         m_torque_R.data[i] = gain * VEL_GAIN / dt;
         qold_R[i] = q;
     }
-        cout << "in Execute 4 " << endl;
     m_torque_LOut.write();
     m_torque_ROut.write();
-    cout << "in Execute 5 " << endl;
     currentTime += dt;
     return RTC::RTC_OK;
 }
@@ -309,8 +303,7 @@ void Jaco2ControllerRTC::updateTargetJointAnglesBYInverseKinematicks()
         // 手首座標
         Vector3d p =  ikWrist->p();
         Matrix3d R =  ikWrist->R();
-        cout << " test 1 " << endl;  
-        if(m_button_L.data[0]){
+        if(m_button_L.data[10]){
             if(m_axis_L.data[1] > 0){
                 R *= RotateZ(deg2rad(-0.2));
             }
@@ -319,16 +312,15 @@ void Jaco2ControllerRTC::updateTargetJointAnglesBYInverseKinematicks()
             }
         }
         else{
-            p(0) -= (float)m_axis_L.data[0] /20000000;
-            p(1) += (float)m_axis_L.data[1] /20000000;
+            p(0) -= (float)m_axis_L.data[1] /20000000;
+            p(1) -= (float)m_axis_L.data[0] /20000000;
         }      
-        if(m_button_L.data[4]){
+        if(m_button_L.data[14]){
             p(2) += 0.001;
         }
-        if(m_button_L.data[5]){
+        if(m_button_L.data[15]){
             p(2) -= 0.001;
         }
-        cout << " test 2 " << endl; 
         // // 手首の操作
         if(m_button_L.data[1]){
             R *= RotateX(deg2rad(0.2));
@@ -342,7 +334,6 @@ void Jaco2ControllerRTC::updateTargetJointAnglesBYInverseKinematicks()
         if(m_button_L.data[3]){
             R *= RotateY(deg2rad(-0.2));
         }
-        cout << " test 3 " << endl; 
         baseToWrist->calcInverseKinematics(p, R);
          for(int i = 0; i <6; i++ )
          {
@@ -352,14 +343,13 @@ void Jaco2ControllerRTC::updateTargetJointAnglesBYInverseKinematicks()
          }
         double dq_fingerL = 0.0;
         if(m_button_L.data[4]){
-            dq_fingerL -= 0.004;
+            dq_fingerL += 0.004;
         }
-                cout << " test 4 " << endl; 
         VectorXd RPY = rpyFromRot(ikWrist->attitude());
         // cout << "p(x) : " << p(0) << " p(y) : " << p(1) << " p(z) : "<< p(2) << endl;
         // cout << "Roll : " << RPY(0) << " Pitch : " << RPY(1) << " YAW : "<< RPY(2) << endl;
         if(m_button_L.data[5]){
-            dq_fingerL += 0.004;
+            dq_fingerL -= 0.004;
         }
         for(int i = 6; i < 9; ++i){
             qref_L[i] += dq_fingerL;
@@ -369,23 +359,22 @@ void Jaco2ControllerRTC::updateTargetJointAnglesBYInverseKinematicks()
         // 手首座標
         Vector3d p2 =  ikWrist2->p();
         Matrix3d R2 =  ikWrist2->R();
-cout << " test 5 " << endl; 
-        if(m_button_R.data[1]){
+        if(m_button_R.data[11]){
             if(m_axis_R.data[1] > 0){
-                R2 *= RotateX(deg2rad(-0.2));
+                R2 *= RotateX(deg2rad(0.2));
             }
             if(m_axis_R.data[1] < 0){
-                R2 *= RotateX(deg2rad(0.2));
+                R2 *= RotateX(deg2rad(-0.2));
             }
         }
         else{
             p2(0) += (float)m_axis_R.data[0] /20000000;
             p2(1) -= (float)m_axis_R.data[1] /20000000;
         }      
-        if(m_button_R.data[4]){
+        if(m_button_R.data[14]){
             p2(2) += 0.001;
         }
-        if(m_button_R.data[5]){
+        if(m_button_R.data[15]){
             p2(2) -= 0.001;
         }
 
@@ -402,7 +391,6 @@ cout << " test 5 " << endl;
         if(m_button_R.data[0]){
             R2 *= RotateY(deg2rad(-0.2));
         }
-cout << " test 6 " << endl; 
         baseToWrist2->calcInverseKinematics(p2, R2);
         
          for(int i = 0; i <6; i++ )
@@ -424,7 +412,6 @@ cout << " test 6 " << endl;
         for(int i = 6; i < 9; ++i){
             qref_R[i] += dq_fingerR;
         }
-                cout << "end_kinematics " << endl;  
 }
 
 double Jaco2ControllerRTC::deg2rad(double degree)
